@@ -121,7 +121,7 @@ if selected == "Parkinsons Prediction":
     st.title("Parkinson's Disease")
     st.write("Enter the following details to predict Parkinson's disease:")
 
-      fo = st.number_input('MDVP:Fo(Hz)', step=0.00001)
+    fo = st.number_input('MDVP:Fo(Hz)', step=0.00001)
     fhi = st.number_input('MDVP:Fhi(Hz)', step=0.00001)
     flo = st.number_input('MDVP:Flo(Hz)', step=0.00001)
     Jitter_percent = st.number_input('MDVP:Jitter(%)', step=0.00001)
