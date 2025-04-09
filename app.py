@@ -58,11 +58,13 @@ selected = st.selectbox(
      'Thyroid Disease Prediction']
 )
 
-def display_input(label, tooltip, key, type="text"):
-    if type == "text":
-        return st.text_input(label, key=key, help=tooltip)
-    elif type == "number":
-        return st.number_input(label, key=key, help=tooltip, step=1)
+def display_input(label, help_text, key, input_type):
+    if input_type == 'float':
+        return st.number_input(label, help=help_text, key=key, format="%.2f")
+    elif input_type == 'number':
+        return st.number_input(label, help=help_text, key=key)
+    else:
+        return st.text_input(label, help=help_text, key=key)
 
 # Heart Disease Prediction Page
 if selected == 'Heart Disease Prediction':
@@ -78,9 +80,7 @@ if selected == 'Heart Disease Prediction':
     restecg = display_input('Resting Electrocardiographic results (0, 1, 2)', 'Enter resting ECG results', 'restecg', 'number')
     thalach = display_input('Maximum Heart Rate achieved', 'Enter maximum heart rate', 'thalach', 'number')
     exang = display_input('Exercise Induced Angina (1 = yes; 0 = no)', 'Enter exercise induced angina', 'exang', 'number')
-    oldpeak = st.number_input('ST depression induced by exercise', 
-                          help='Enter ST depression value (can be decimal)', 
-                          format="%.2f")
+    oldpeak = display_input('ST depression induced by exercise', 'Enter ST depression value (can be decimal)', 'oldpeak', 'float')  # Accepting float here
     slope = display_input('Slope of the peak exercise ST segment (0, 1, 2)', 'Enter slope value', 'slope', 'number')
     ca = display_input('Major vessels colored by fluoroscopy (0-3)', 'Enter number of major vessels', 'ca', 'number')
     thal = display_input('Thal (0 = normal; 1 = fixed defect; 2 = reversible defect)', 'Enter thal value', 'thal', 'number')
