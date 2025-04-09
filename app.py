@@ -55,7 +55,7 @@ selected = st.selectbox(
     ['Heart Disease Prediction',
      'Parkinsons Prediction',
      'Lung Cancer Prediction',
-     'Hypo-Thyroid Prediction']
+     'Thyroid Disease Prediction']
 )
 
 def display_input(label, tooltip, key, type="text"):
