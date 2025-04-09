@@ -16,18 +16,16 @@ hide_st_style = """
 st.markdown(hide_st_style, unsafe_allow_html=True)
 
 # Adding Background Image
-background_image_url = "https://github.com/DoRishabh/MedicalDiagnosisAI/blob/main/WhatsApp%20Image%202025-03-24%20at%2004.44.18_90600893.jpg?raw=true"  # Replace with your image URL
+background_image_url = "https://www.intertek.com/siteassets/blogs/2024-04-16-blog-widebanner.jpg"  # Replace with your image URL
 
 page_bg_img = f"""
 <style>
 [data-testid="stAppViewContainer"] {{
 background-image: url({background_image_url});
 background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    height: 100vh;  /* Ensures the background covers the full viewport */
-    width: 50;  /* Ensures full width */
+background-position: center;
+background-repeat: no-repeat;
+background-attachment: fixed;
 }}
 
 [data-testid="stAppViewContainer"]::before {{
@@ -37,7 +35,7 @@ top: 0;
 left: 0;
 width: 100%;
 height: 100%;
-background-color: rgba(0, 0, 0, 0.2);
+background-color: rgba(0, 0, 0, 0.7);
 }}
 </style>
 """
@@ -65,7 +63,6 @@ def display_input(label, tooltip, key, type="text"):
         return st.text_input(label, key=key, help=tooltip)
     elif type == "number":
         return st.number_input(label, key=key, help=tooltip, step=1)
-
 
 # Heart Disease Prediction Page
 if selected == 'Heart Disease Prediction':
@@ -171,9 +168,7 @@ if selected == "Hypo-Thyroid Prediction":
         thyroid_prediction = models['thyroid'].predict([[age, sex, on_thyroxine, tsh, t3_measured, t3, tt4]])
         thyroid_diagnosis = "The person has Hypo-Thyroid disease" if thyroid_prediction[0] == 1 else "The person does not have Hypo-Thyroid disease"
         st.success(thyroid_diagnosis)
-
-
-
+        
 # Footer
 st.sidebar.markdown('---')
 st.sidebar.markdown('Made with ❤️ by [Rishabh Mehta](https://www.linkedin.com/in/rishabhmehta2003) | [GitHub](https://github.com/DoRishabh)')
