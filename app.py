@@ -121,35 +121,38 @@ if selected == "Parkinsons Prediction":
     st.title("Parkinson's Disease")
     st.write("Enter the following details to predict Parkinson's disease:")
 
-    fo = display_input('MDVP:Fo(Hz)', 'Enter MDVP:Fo(Hz) value', 'fo', 'number')
-    fhi = display_input('MDVP:Fhi(Hz)', 'Enter MDVP:Fhi(Hz) value', 'fhi', 'number')
-    flo = display_input('MDVP:Flo(Hz)', 'Enter MDVP:Flo(Hz) value', 'flo', 'number')
-    Jitter_percent = display_input('MDVP:Jitter(%)', 'Enter MDVP:Jitter(%) value', 'Jitter_percent', 'number')
-    Jitter_Abs = display_input('MDVP:Jitter(Abs)', 'Enter MDVP:Jitter(Abs) value', 'Jitter_Abs', 'number')
-    RAP = display_input('MDVP:RAP', 'Enter MDVP:RAP value', 'RAP', 'number')
-    PPQ = display_input('MDVP:PPQ', 'Enter MDVP:PPQ value', 'PPQ', 'number')
-    DDP = display_input('Jitter:DDP', 'Enter Jitter:DDP value', 'DDP', 'number')
-    Shimmer = display_input('MDVP:Shimmer', 'Enter MDVP:Shimmer value', 'Shimmer', 'number')
-    Shimmer_dB = display_input('MDVP:Shimmer(dB)', 'Enter MDVP:Shimmer(dB) value', 'Shimmer_dB', 'number')
-    APQ3 = display_input('Shimmer:APQ3', 'Enter Shimmer:APQ3 value', 'APQ3', 'number')
-    APQ5 = display_input('Shimmer:APQ5', 'Enter Shimmer:APQ5 value', 'APQ5', 'number')
-    APQ = display_input('MDVP:APQ', 'Enter MDVP:APQ value', 'APQ', 'number')
-    DDA = display_input('Shimmer:DDA', 'Enter Shimmer:DDA value', 'DDA', 'number')
-    NHR = display_input('NHR', 'Enter NHR value', 'NHR', 'number')
-    HNR = display_input('HNR', 'Enter HNR value', 'HNR', 'number')
-    RPDE = display_input('RPDE', 'Enter RPDE value', 'RPDE', 'number')
-    DFA = display_input('DFA', 'Enter DFA value', 'DFA', 'number')
-    spread1 = display_input('Spread1', 'Enter spread1 value', 'spread1', 'number')
-    spread2 = display_input('Spread2', 'Enter spread2 value', 'spread2', 'number')
-    D2 = display_input('D2', 'Enter D2 value', 'D2', 'number')
-    PPE = display_input('PPE', 'Enter PPE value', 'PPE', 'number')
+      fo = st.number_input('MDVP:Fo(Hz)', step=0.00001)
+    fhi = st.number_input('MDVP:Fhi(Hz)', step=0.00001)
+    flo = st.number_input('MDVP:Flo(Hz)', step=0.00001)
+    Jitter_percent = st.number_input('MDVP:Jitter(%)', step=0.00001)
+    Jitter_Abs = st.number_input('MDVP:Jitter(Abs)', step=0.00001)
+    RAP = st.number_input('MDVP:RAP', step=0.00001)
+    PPQ = st.number_input('MDVP:PPQ', step=0.00001)
+    DDP = st.number_input('Jitter:DDP', step=0.00001)
+    Shimmer = st.number_input('MDVP:Shimmer', step=0.00001)
+    Shimmer_dB = st.number_input('MDVP:Shimmer(dB)', step=0.00001)
+    APQ3 = st.number_input('Shimmer:APQ3', step=0.00001)
+    APQ5 = st.number_input('Shimmer:APQ5', step=0.00001)
+    APQ = st.number_input('MDVP:APQ', step=0.00001)
+    DDA = st.number_input('Shimmer:DDA', step=0.00001)
+    NHR = st.number_input('NHR', step=0.00001)
+    HNR = st.number_input('HNR', step=0.00001)
+    RPDE = st.number_input('RPDE', step=0.00001)
+    DFA = st.number_input('DFA', step=0.00001)
+    spread1 = st.number_input('Spread1', step=0.00001)
+    spread2 = st.number_input('Spread2', step=0.00001)
+    D2 = st.number_input('D2', step=0.00001)
+    PPE = st.number_input('PPE', step=0.00001)
 
     parkinsons_diagnosis = ''
     if st.button("Parkinson's Test Result"):
-        parkinsons_prediction = models['parkinsons'].predict([[fo, fhi, flo, Jitter_percent, Jitter_Abs, RAP, PPQ, DDP, Shimmer, Shimmer_dB, APQ3, APQ5, APQ, DDA, NHR, HNR, RPDE, DFA, spread1, spread2, D2, PPE]])
-        parkinsons_diagnosis = "The person has Parkinson's disease" if parkinsons_prediction[0] == 1 else "The person does not have Parkinson's disease"
+        input_data = [[fo, fhi, flo, Jitter_percent, Jitter_Abs, RAP, PPQ, DDP, Shimmer, Shimmer_dB, 
+                       APQ3, APQ5, APQ, DDA, NHR, HNR, RPDE, DFA, spread1, spread2, D2, PPE]]
+        
+        parkinsons_prediction = models['parkinsons'].predict(input_data)
+        parkinsons_diagnosis = "✅ The person has Parkinson's disease" if parkinsons_prediction[0] == 1 else "❎ The person does not have Parkinson's disease"
         st.success(parkinsons_diagnosis)
-
+                
 # Hypo-Thyroid Prediction Page
 if selected == "Thyroid Disease Prediction":
     st.title("Thyroid Disease Prediction")
