@@ -89,6 +89,33 @@ if selected == 'Heart Disease Prediction':
         heart_diagnosis = 'The person has heart disease' if heart_prediction[0] == 1 else 'The person does not have heart disease'
         st.success(heart_diagnosis)
 
+# Lung Cancer Prediction Page
+if selected == "Lung Cancer Prediction":
+    st.title("Lung Cancer")
+    st.write("Enter the following details to predict lung cancer:")
+
+    GENDER = display_input('Gender (1 = Male; 0 = Female)', 'Enter gender of the person', 'GENDER', 'number')
+    AGE = display_input('Age', 'Enter age of the person', 'AGE', 'number')
+    SMOKING = display_input('Smoking (1 = Yes; 2 = No)', 'Enter if the person smokes', 'SMOKING', 'number')
+    YELLOW_FINGERS = display_input('Yellow Fingers (1 = Yes; 2 = No)', 'Enter if the person has yellow fingers', 'YELLOW_FINGERS', 'number')
+    ANXIETY = display_input('Anxiety (1 = Yes; 2 = No)', 'Enter if the person has anxiety', 'ANXIETY', 'number')
+    PEER_PRESSURE = display_input('Peer Pressure (1 = Yes; 2 = No)', 'Enter if the person is under peer pressure', 'PEER_PRESSURE', 'number')
+    CHRONIC_DISEASE = display_input('Chronic Disease (1 = Yes; 2 = No)', 'Enter if the person has a chronic disease', 'CHRONIC_DISEASE', 'number')
+    FATIGUE = display_input('Fatigue (1 = Yes; 2 = No)', 'Enter if the person experiences fatigue', 'FATIGUE', 'number')
+    ALLERGY = display_input('Allergy (1 = Yes; 2 = No)', 'Enter if the person has allergies', 'ALLERGY', 'number')
+    WHEEZING = display_input('Wheezing (1 = Yes; 2 = No)', 'Enter if the person experiences wheezing', 'WHEEZING', 'number')
+    ALCOHOL_CONSUMING = display_input('Alcohol Consuming (1 = Yes; 2 = No)', 'Enter if the person consumes alcohol', 'ALCOHOL_CONSUMING', 'number')
+    COUGHING = display_input('Coughing (1 = Yes; 2 = No)', 'Enter if the person experiences coughing', 'COUGHING', 'number')
+    SHORTNESS_OF_BREATH = display_input('Shortness Of Breath (1 = Yes; 2 = No)', 'Enter if the person experiences shortness of breath', 'SHORTNESS_OF_BREATH', 'number')
+    SWALLOWING_DIFFICULTY = display_input('Swallowing Difficulty (1 = Yes; 2 = No)', 'Enter if the person has difficulty swallowing', 'SWALLOWING_DIFFICULTY', 'number')
+    CHEST_PAIN = display_input('Chest Pain (1 = Yes; 2 = No)', 'Enter if the person experiences chest pain', 'CHEST_PAIN', 'number')
+
+    lungs_diagnosis = ''
+    if st.button("Lung Cancer Test Result"):
+        lungs_prediction = models['lung_cancer'].predict([[GENDER, AGE, SMOKING, YELLOW_FINGERS, ANXIETY, PEER_PRESSURE, CHRONIC_DISEASE, FATIGUE, ALLERGY, WHEEZING, ALCOHOL_CONSUMING, COUGHING, SHORTNESS_OF_BREATH, SWALLOWING_DIFFICULTY, CHEST_PAIN]])
+        lungs_diagnosis = "The person has lung cancer disease" if lungs_prediction[0] == 1 else "The person does not have lung cancer disease"
+        st.success(lungs_diagnosis)
+
 # Parkinson's Prediction Page
 if selected == "Parkinsons Prediction":
     st.title("Parkinson's Disease")
@@ -122,33 +149,6 @@ if selected == "Parkinsons Prediction":
         parkinsons_prediction = models['parkinsons'].predict([[fo, fhi, flo, Jitter_percent, Jitter_Abs, RAP, PPQ, DDP, Shimmer, Shimmer_dB, APQ3, APQ5, APQ, DDA, NHR, HNR, RPDE, DFA, spread1, spread2, D2, PPE]])
         parkinsons_diagnosis = "The person has Parkinson's disease" if parkinsons_prediction[0] == 1 else "The person does not have Parkinson's disease"
         st.success(parkinsons_diagnosis)
-
-# Lung Cancer Prediction Page
-if selected == "Lung Cancer Prediction":
-    st.title("Lung Cancer")
-    st.write("Enter the following details to predict lung cancer:")
-
-    GENDER = display_input('Gender (1 = Male; 0 = Female)', 'Enter gender of the person', 'GENDER', 'number')
-    AGE = display_input('Age', 'Enter age of the person', 'AGE', 'number')
-    SMOKING = display_input('Smoking (1 = Yes; 2 = No)', 'Enter if the person smokes', 'SMOKING', 'number')
-    YELLOW_FINGERS = display_input('Yellow Fingers (1 = Yes; 2 = No)', 'Enter if the person has yellow fingers', 'YELLOW_FINGERS', 'number')
-    ANXIETY = display_input('Anxiety (1 = Yes; 2 = No)', 'Enter if the person has anxiety', 'ANXIETY', 'number')
-    PEER_PRESSURE = display_input('Peer Pressure (1 = Yes; 2 = No)', 'Enter if the person is under peer pressure', 'PEER_PRESSURE', 'number')
-    CHRONIC_DISEASE = display_input('Chronic Disease (1 = Yes; 2 = No)', 'Enter if the person has a chronic disease', 'CHRONIC_DISEASE', 'number')
-    FATIGUE = display_input('Fatigue (1 = Yes; 2 = No)', 'Enter if the person experiences fatigue', 'FATIGUE', 'number')
-    ALLERGY = display_input('Allergy (1 = Yes; 2 = No)', 'Enter if the person has allergies', 'ALLERGY', 'number')
-    WHEEZING = display_input('Wheezing (1 = Yes; 2 = No)', 'Enter if the person experiences wheezing', 'WHEEZING', 'number')
-    ALCOHOL_CONSUMING = display_input('Alcohol Consuming (1 = Yes; 2 = No)', 'Enter if the person consumes alcohol', 'ALCOHOL_CONSUMING', 'number')
-    COUGHING = display_input('Coughing (1 = Yes; 2 = No)', 'Enter if the person experiences coughing', 'COUGHING', 'number')
-    SHORTNESS_OF_BREATH = display_input('Shortness Of Breath (1 = Yes; 2 = No)', 'Enter if the person experiences shortness of breath', 'SHORTNESS_OF_BREATH', 'number')
-    SWALLOWING_DIFFICULTY = display_input('Swallowing Difficulty (1 = Yes; 2 = No)', 'Enter if the person has difficulty swallowing', 'SWALLOWING_DIFFICULTY', 'number')
-    CHEST_PAIN = display_input('Chest Pain (1 = Yes; 2 = No)', 'Enter if the person experiences chest pain', 'CHEST_PAIN', 'number')
-
-    lungs_diagnosis = ''
-    if st.button("Lung Cancer Test Result"):
-        lungs_prediction = models['lung_cancer'].predict([[GENDER, AGE, SMOKING, YELLOW_FINGERS, ANXIETY, PEER_PRESSURE, CHRONIC_DISEASE, FATIGUE, ALLERGY, WHEEZING, ALCOHOL_CONSUMING, COUGHING, SHORTNESS_OF_BREATH, SWALLOWING_DIFFICULTY, CHEST_PAIN]])
-        lungs_diagnosis = "The person has lung cancer disease" if lungs_prediction[0] == 1 else "The person does not have lung cancer disease"
-        st.success(lungs_diagnosis)
 
 # Hypo-Thyroid Prediction Page
 if selected == "Hypo-Thyroid Prediction":
