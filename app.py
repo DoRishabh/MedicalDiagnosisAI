@@ -121,36 +121,36 @@ if selected == "Parkinsons Prediction":
     st.title("Parkinson's Disease")
     st.write("Enter the following details to predict Parkinson's disease:")
 
-    fo = st.number_input('MDVP:Fo(Hz)', step=0.00001, format="%.5f")
-    fhi = st.number_input('MDVP:Fhi(Hz)', step=0.00001, format="%.5f")
-    flo = st.number_input('MDVP:Flo(Hz)', step=0.00001, format="%.5f")
-    Jitter_percent = st.number_input('MDVP:Jitter(%)', step=0.00001, format="%.5f")
-    Jitter_Abs = st.number_input('MDVP:Jitter(Abs)', step=0.00001, format="%.5f")
-    RAP = st.number_input('MDVP:RAP', step=0.00001, format="%.5f")
-    PPQ = st.number_input('MDVP:PPQ', step=0.00001, format="%.5f")
-    DDP = st.number_input('Jitter:DDP', step=0.00001, format="%.5f")
-    Shimmer = st.number_input('MDVP:Shimmer', step=0.00001, format="%.5f")
-    Shimmer_dB = st.number_input('MDVP:Shimmer(dB)', step=0.00001, format="%.5f")
-    APQ3 = st.number_input('Shimmer:APQ3', step=0.00001, format="%.5f")
-    APQ5 = st.number_input('Shimmer:APQ5', step=0.00001, format="%.5f")
-    APQ = st.number_input('MDVP:APQ', step=0.00001, format="%.5f")
-    DDA = st.number_input('Shimmer:DDA', step=0.00001, format="%.5f")
-    NHR = st.number_input('NHR', step=0.00001, format="%.5f")
-    HNR = st.number_input('HNR', step=0.00001, format="%.5f")
-    RPDE = st.number_input('RPDE', step=0.00001, format="%.5f")
-    DFA = st.number_input('DFA', step=0.00001, format="%.5f")
-    spread1 = st.number_input('Spread1', step=0.00001, format="%.5f")
-    spread2 = st.number_input('Spread2', step=0.00001, format="%.5f")
-    D2 = st.number_input('D2', step=0.00001, format="%.5f")
-    PPE = st.number_input('PPE', step=0.00001, format="%.5f")
+    fo = st.number_input("MDVP:Fo(Hz)", value=0.0, format="%.10f")
+    fhi = st.number_input("MDVP:Fhi(Hz)", value=0.0, format="%.10f")
+    flo = st.number_input("MDVP:Flo(Hz)", value=0.0, format="%.10f")
+    jitter_percent = st.number_input("MDVP:Jitter(%)", value=0.0, format="%.10f")
+    jitter_abs = st.number_input("MDVP:Jitter(Abs)", value=0.0, format="%.10f")
+    rap = st.number_input("MDVP:RAP", value=0.0, format="%.10f")
+    ppq = st.number_input("MDVP:PPQ", value=0.0, format="%.10f")
+    ddp = st.number_input("Jitter:DDP", value=0.0, format="%.10f")
+    shimmer = st.number_input("MDVP:Shimmer", value=0.0, format="%.10f")
+    shimmer_db = st.number_input("MDVP:Shimmer(dB)", value=0.0, format="%.10f")
+    apq3 = st.number_input("Shimmer:APQ3", value=0.0, format="%.10f")
+    apq5 = st.number_input("Shimmer:APQ5", value=0.0, format="%.10f")
+    apq = st.number_input("MDVP:APQ", value=0.0, format="%.10f")
+    dda = st.number_input("Shimmer:DDA", value=0.0, format="%.10f")
+    nhr = st.number_input("NHR", value=0.0, format="%.10f")
+    hnr = st.number_input("HNR", value=0.0, format="%.10f")
+    rpde = st.number_input("RPDE", value=0.0, format="%.10f")
+    dfa = st.number_input("DFA", value=0.0, format="%.10f")
+    spread1 = st.number_input("spread1", value=0.0, format="%.10f")
+    spread2 = st.number_input("spread2", value=0.0, format="%.10f")
+    d2 = st.number_input("D2", value=0.0, format="%.10f")
+    ppe = st.number_input("PPE", value=0.0, format="%.10f")
 
-    parkinsons_diagnosis = ''
+    parkinsons_diagnosis = ""
     if st.button("Parkinson's Test Result"):
-        input_data = [[fo, fhi, flo, Jitter_percent, Jitter_Abs, RAP, PPQ, DDP, Shimmer, Shimmer_dB, 
-                       APQ3, APQ5, APQ, DDA, NHR, HNR, RPDE, DFA, spread1, spread2, D2, PPE]]
-        
+        input_data = [[fo, fhi, flo, jitter_percent, jitter_abs, rap, ppq, ddp, shimmer, shimmer_db,
+                       apq3, apq5, apq, dda, nhr, hnr, rpde, dfa, spread1, spread2, d2, ppe]]
         parkinsons_prediction = models['parkinsons'].predict(input_data)
-        parkinsons_diagnosis = "✅ The person has Parkinson's disease" if parkinsons_prediction[0] == 1 else "❎ The person does not have Parkinson's disease"
+
+        parkinsons_diagnosis = "The person has Parkinson's disease" if parkinsons_prediction[0] == 1 else "The person does not have Parkinson's disease"
         st.success(parkinsons_diagnosis)
                 
 # Hypo-Thyroid Prediction Page
