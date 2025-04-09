@@ -151,22 +151,23 @@ if selected == "Parkinsons Prediction":
         st.success(parkinsons_diagnosis)
 
 # Hypo-Thyroid Prediction Page
-if selected == "Hypo-Thyroid Prediction":
-    st.title("Hypo-Thyroid")
-    st.write("Enter the following details to predict hypo-thyroid disease:")
+if selected == "Thyroid Disease Prediction":
+    st.title("Thyroid Disease Prediction")
+    st.write("Enter the following details to predict thyroid disease:")
 
     age = display_input('Age', 'Enter age of the person', 'age', 'number')
     sex = display_input('Sex (1 = Male; 0 = Female)', 'Enter sex of the person', 'sex', 'number')
     on_thyroxine = display_input('On Thyroxine (1 = Yes; 0 = No)', 'Enter if the person is on thyroxine', 'on_thyroxine', 'number')
-    tsh = display_input('TSH Level', 'Enter TSH level', 'tsh', 'number')
-    t3_measured = display_input('T3 Measured (1 = Yes; 0 = No)', 'Enter if T3 was measured', 't3_measured', 'number')
-    t3 = display_input('T3 Level', 'Enter T3 level', 't3', 'number')
-    tt4 = display_input('TT4 Level', 'Enter TT4 level', 'tt4', 'number')
+    tsh = st.number_input('TSH Level (e.g. 6.6)', min_value=0.0, step=0.1, format="%.2f")
+    t3_measured = st.number_input('T3 Measured (1 = Yes; 0 = No)', min_value=0.0, max_value=1.0, step=1.0, format="%.0f")
+    t3 = st.number_input('T3 Level (e.g. 1.4)', min_value=0.0, step=0.1, format="%.2f")
+    tt4 = st.number_input('TT4 Level (e.g. 99)', min_value=0.0, step=0.1, format="%.2f")
 
     thyroid_diagnosis = ''
     if st.button("Thyroid Test Result"):
-        thyroid_prediction = models['thyroid'].predict([[age, sex, on_thyroxine, tsh, t3_measured, t3, tt4]])
-        thyroid_diagnosis = "The person has Hypo-Thyroid disease" if thyroid_prediction[0] == 1 else "The person does not have Hypo-Thyroid disease"
+        input_data = [[age, sex, on_thyroxine, tsh, t3_measured, t3, tt4]]
+        thyroid_prediction = models['thyroid'].predict(input_data)
+        thyroid_diagnosis = "The person has Thyroid disease" if thyroid_prediction[0] == 1 else "The person does not have Thyroid disease"
         st.success(thyroid_diagnosis)
         
 # Footer
